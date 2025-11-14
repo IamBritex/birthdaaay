@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <title>Reproductor con Fades</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-white text-black">
+
+    <div id="player-container">
+
+        <canvas id="canvas" width="600" height="300"></canvas>
+
+        <img id="eventImage" src="code.png" alt="Evento de código">
+        
+        <img id="eventImageJumm" class="timed-event-image" src="jumm.png" alt="Evento Jumm">
+        <img id="eventImageAwiwiiii" class="timed-event-image" src="awiwiiii.png" alt="Evento Awiwiiii">
+        <img id="eventImageOhhh" class="timed-event-image" src="ohhh.png" alt="Evento Ohhh">
+        <img id="eventImageNam" class="timed-event-image" src="nam.png" alt="Evento Nam"> 
+        
+        <audio 
+            id="audioPlayer1" 
+            crossorigin="anonymous">
+        </audio>
+        <audio 
+            id="audioPlayer2" 
+            crossorigin="anonymous">
+        </audio>
+
+        <button id="playPauseBtn">
+            <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path fill-rule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653z" clip-rule="evenodd" />
+            </svg>
+            <svg id="pauseIcon" class="hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path fill-rule="evenodd" d="M6.75 5.25a.75.75 0 01.75.75V18a.75.75 0 01-1.5 0V6a.75.75 0 01.75-.75zM17.25 5.25a.75.75 0 01.75.75V18a.75.75 0 01-1.5 0V6a.75.75 0 01.75-.75z" clip-rule="evenodd" />
+            </svg>
+        </button>
+
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

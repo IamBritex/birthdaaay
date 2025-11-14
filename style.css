@@ -1,0 +1,167 @@
+/* Estilos generales */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; 
+    transition: background-color 0.8s ease;
+}
+
+/* Contenedor del reproductor */
+#player-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; 
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+}
+
+/* --- Estilo del Canvas --- */
+#canvas {
+    width: 80vw;
+    max-width: 600px;
+    height: 300px;
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.0); /* Estado inicial */
+    z-index: 1; 
+    background-color: transparent; 
+    transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                top 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* --- Estilo del botón (siempre FIXED) --- */
+#playPauseBtn {
+    position: fixed;
+    bottom: 20%; 
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    background-color: #000000;
+    color: #ffffff;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(-50%) scale(1);
+    z-index: 10; 
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+                bottom 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Estado de Pausa */
+#playPauseBtn.paused-fullscreen {
+    bottom: 50%; 
+    width: 100px;
+    height: 100px;
+    transform: translate(-50%, 50%) scale(1.1);
+}
+
+/* --- Estilos de la Imagen del Evento (QR) --- */
+#eventImage {
+    position: fixed;
+    top: 50%; 
+    left: 50%;
+    width: 300px;
+    height: auto;
+    opacity: 0;
+    transform: translate(-50%, 100vh); 
+    transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                opacity 0.8s ease;
+    z-index: 5; 
+}
+
+/* --- ESTADOS CUANDO LA IMAGEN (QR) ESTÁ ACTIVA --- */
+body.image-active #eventImage {
+    opacity: 1;
+    transform: translate(-50%, -50%); 
+}
+body.image-active #canvas {
+    top: 30%; 
+    transform: translate(-50%, -50%) scale(0.8); 
+}
+body.image-active #playPauseBtn {
+    bottom: 15%; 
+}
+body.image-active #playPauseBtn.paused-fullscreen {
+    bottom: 15%; 
+    transform: translateX(-50%) scale(1.1); 
+}
+
+/* --- MODIFICACIÓN: Estilos de imágenes cronometradas --- */
+.timed-event-image {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 350px; 
+    height: auto;
+    
+    /* Estado inicial (abajo, fuera de pantalla) */
+    transform: translate(-50%, 100vh);
+    
+    /* Transición SÓLO de movimiento */
+    transition: transform 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+    
+    z-index: 6; 
+}
+
+/* Estado activo (centrado en pantalla) */
+.timed-event-image.active {
+    transform: translate(-50%, -50%);
+}
+/* --- FIN MODIFICACIÓN --- */
+
+
+/* --- Estilo de partículas de corazón --- */
+.heart-particle {
+    position: fixed;
+    bottom: -50px; 
+    left: var(--start-x); 
+    width: 50px;
+    height: auto;
+    pointer-events: none;
+    z-index: 100;
+    animation: heart-fountain var(--duration) cubic-bezier(0.3, 0.8, 0.8, 1) forwards;
+}
+
+@keyframes heart-fountain {
+    0% {
+        transform: translateY(0) rotate(var(--start-rot)) scale(0.8);
+        opacity: 1; 
+    }
+    100% {
+        transform: translateY(calc(-80vh - (var(--rand-y) * 20vh))) rotate(var(--end-rot)) scale(1);
+        opacity: 0; 
+    }
+}
+
+
+/* --- Estilo de los iconos SVG --- */
+#playPauseBtn svg {
+    width: 28px;
+    height: 28px;
+    transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+#playPauseBtn.paused-fullscreen svg {
+    width: 50px;
+    height: 50px;
+}
+.hidden {
+    display: none;
+}
+audio {
+    display: none;
+}
